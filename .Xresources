@@ -1,0 +1,22 @@
+#include "/home/pablo/.themes/Xresources-themes/arcadia.Xresources"
+*faceName: Inconsolata
+xterm*faceSize: 12
+xterm*renderFont: true
+xterm*termName: xterm-256color
+UXTerm.vt100.translations: #override \n\
+   Ctrl <Key> minus: smaller-vt-font() \n\
+   Ctrl <Key> plus: larger-vt-font()
+
+
+URxvt.font                   : xft:Inconsolata:pixelsize=16
+URxvt.boldFont               : xft:Inconsolata:pixelsize=16
+URxvt.scrollBar              : false
+URxvt.buffered               : true
+URxvt.iso14755               : false
+URxvt.perl-ext-common        : default,tabbed,resize-font
+URxvt.tabbed.tabbar-fg       : 8
+URxvt.tabbed.tabbar-bg       : 0
+URxvt.tabbed.tab-fg          : 15
+URxvt.tabbed.tab-bg          : 0
+URxvt.tabbed.autohide        : true
+URXvt.tabbed.reopen-on-close : yes
