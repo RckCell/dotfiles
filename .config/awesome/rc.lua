@@ -98,7 +98,7 @@ local scrlocker    = "slock"
 local rofi_run     = "rofi -show run"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "\u{1F30E}", "\u{1F5B3}", "3", "4" }
+awful.util.tagnames = { "\u{1F30E}", "\u{1F5B3}", "\u{1F5A7}", "\u{1F3AE}" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,

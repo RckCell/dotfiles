@@ -193,14 +193,14 @@ local temp = lain.widget.temp({
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_hdd)
---[[ commented because it needs Gio/Glib >= 2.54
+-- commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. fs_now["/"].percentage .. "% "))
     end
 })
---]]
+
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_battery)
@@ -313,23 +313,22 @@ function theme.at_screen_connect(s)
             arrl_dl,
             volicon,
             theme.volume.widget,
-            --arrl_ld,
+            arrl_ld,
             --wibox.container.background(mailicon, theme.bg_focus),
             --wibox.container.background(theme.mail.widget, theme.bg_focus),
-            arrl_ld,
-            wibox.container.background(memicon, theme.bg_focus),
-            wibox.container.background(mem.widget, theme.bg_focus),
-            arrl_dl,
-            --wibox.container.background(cpuicon, theme.bg_focus),
-            --wibox.container.background(cpu.widget, theme.bg_focus),
-            cpuicon,
-            cpu.widget,
-            --arrl_dl,
+            wibox.container.background(tempicon, theme.bg_focus),
+            wibox.container.background(temp.widget, theme.bg_focus),
             --tempicon,
             --temp.widget,
-            --arrl_ld,
-            --wibox.container.background(fsicon, theme.bg_focus),
-            --wibox.container.background(theme.fs.widget, theme.bg_focus),
+            arrl_dl,
+            memicon, 
+            mem.widget, 
+            arrl_ld,
+            wibox.container.background(cpuicon, theme.bg_focus),
+            wibox.container.background(cpu.widget, theme.bg_focus),
+            arrl_dl,
+            fsicon,
+            theme.fs.widget,
             --arrl_dl,
             --baticon,
             --bat.widget,
