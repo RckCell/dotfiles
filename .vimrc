@@ -7,7 +7,9 @@ set autoread
 set wrap
 set number
 syntax on
+filetype plugin on
 colorscheme torte
+set relativenumber
 
 " Tabs
 set autoindent
@@ -24,10 +26,11 @@ set clipboard+=unnamedplus
 set go+=a
 set ruler
 set wildmenu
+set path+=**
 
 " Yank (copy) selection to clipboard
 nnoremap <C-c> "+y
 
 " Paste from clipboard
-nnoremap <C-P> "*p
+nnoremap <C-P> "+p
 
