@@ -321,7 +321,7 @@ globalkeys = my_table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ altkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -512,7 +512,7 @@ globalkeys = my_table.join(
     -- Prompt
     --awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
     --          {description = "run prompt", group = "launcher"}),
-      awful.key({ modkey }, "r", function () awful.spawn(rofi_run) end,
+      awful.key({ altkey }, "space", function () awful.spawn(rofi_run) end,
                 {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
@@ -662,7 +662,10 @@ awful.rules.rules = {
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = awful.util.tagnames[1] } },
-    
+
+     { rule = { instance = "Steam" },
+      properties = { screen = 1, tag = awful.util.tagnames[4] } },
+   
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
 }
