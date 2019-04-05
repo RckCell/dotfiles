@@ -3,6 +3,7 @@ set nocompatible
 
 " General
 set autoread
+set termguicolors
 set wrap
 set number
 syntax on

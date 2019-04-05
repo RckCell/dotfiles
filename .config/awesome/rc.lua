@@ -56,7 +56,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root", "vmware-user" }) -- entries must be separated by commas
+run_once({ "urxvtd", "unclutter -root", "vmware-user", "compton" }) -- entries must be separated by commas
 
 -- This function implements the XDG autostart specification
 --[[
@@ -281,6 +281,13 @@ globalkeys = my_table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
+    awful.key({ altkey, "Shift"   }, "Tab",
+        function ()
+            awful.client.focus.byidx(-1)
+        end,
+        {description = "focus previous by index", group = "client"}
+    ),
+
 
     -- By direction client focus
     awful.key({ modkey }, "j",
