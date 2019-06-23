@@ -17,7 +17,7 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local lain          = require("lain")
 --local menubar       = require("menubar")
-local freedesktop   = require("freedesktop")
+-- local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
                       require("awful.hotkeys_popup.keys")
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -56,7 +56,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root", "vmware-user", "compton" }) -- entries must be separated by commas
+run_once({ "vmware-user", "compton" }) -- entries must be separated by commas
 
 -- This function implements the XDG autostart specification
 --[[
@@ -91,7 +91,7 @@ local altkey       = "Mod1"
 --local terminal     = "urxvtc"
 local terminal     = "st"
 local editor       = os.getenv("EDITOR") or "vim"
-local gui_editor   = "gvim"
+local gui_editor   = "code"
 local browser      = "firefox"
 local guieditor    = "atom"
 local scrlocker    = "slock"
@@ -198,17 +198,17 @@ local myawesomemenu = {
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-awful.util.mymainmenu = freedesktop.menu.build({
-    icon_size = beautiful.menu_height or 16,
-    before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon },
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        -- other triads can be put here
-    }
-})
+-- awful.util.mymainmenu = freedesktop.menu.build({
+--     icon_size = beautiful.menu_height or 16,
+--     before = {
+--         { "Awesome", myawesomemenu, beautiful.awesome_icon },
+--         -- other triads can be put here
+--     },
+--     after = {
+--         { "Open terminal", terminal },
+--         -- other triads can be put here
+--     }
+-- })
 -- hide menu when mouse leaves it
 --awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
 
@@ -281,9 +281,9 @@ globalkeys = my_table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ altkey, "Shift"   }, "Tab",
+    awful.key({ altkey,           }, "Tab",
         function ()
-            awful.client.focus.byidx(-1)
+            awful.client.focus.byidx(1)
         end,
         {description = "focus previous by index", group = "client"}
     ),
@@ -314,8 +314,8 @@ globalkeys = my_table.join(
             if client.focus then client.focus:raise() end
         end,
         {description = "focus right", group = "client"}),
-    awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    -- awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
+    --           {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -328,7 +328,7 @@ globalkeys = my_table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ altkey,           }, "Tab",
+    awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -402,9 +402,9 @@ globalkeys = my_table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Dropdown application
-    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
-              {description = "dropdown application", group = "launcher"}),
+    -- -- Dropdown application
+    -- awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
+    --           {description = "dropdown application", group = "launcher"}),
 
     -- Widgets popups
     awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
@@ -421,13 +421,13 @@ globalkeys = my_table.join(
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({      }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
-    awful.key({ altkey }, "Down",
+    awful.key({      }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
             beautiful.volume.update()
@@ -664,13 +664,16 @@ awful.rules.rules = {
 
     -- Titlebars
     { rule_any = { type = { "dialog", "normal" } },
-      properties = { titlebars_enabled = true } },
+      properties = { titlebars_enabled = false } },
 
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = awful.util.tagnames[1] } },
 
-     { rule = { instance = "Steam" },
+    { rule = { instance = "Steam" },
+      properties = { screen = 1, tag = awful.util.tagnames[4] } },
+
+    { rule = { class = "Spotify" },
       properties = { screen = 1, tag = awful.util.tagnames[4] } },
    
     { rule = { class = "Gimp", role = "gimp-image-window" },
@@ -715,7 +718,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 16}) : setup {
+    awful.titlebar(c, {size = 18}) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
