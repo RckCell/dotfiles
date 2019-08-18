@@ -284,7 +284,21 @@ function theme.at_screen_connect(s)
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons, {font = "Segoe UI Semilight 13"})
+    s.mytag = wibox.widget {
+        {
+            awful.widget.taglist(s, 
+                                 awful.widget.taglist.filter.all, 
+                                 awful.util.taglist_buttons, 
+                                 { font = "Segoe UI Semilight 12"}
+            ),
+            bg = "#444444",
+            shape = gears.shape.octogon,
+            shape_clip = true,
+            widget = wibox.container.background,
+        },
+        margins = 3,
+        widget = wibox.container.margin,
+    }
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
@@ -300,7 +314,7 @@ function theme.at_screen_connect(s)
             bg_focus = theme.tasklist_bg_focus,
             fg_focus = "#FFFFFF",
             fg_normal = "#909090",
-            width = 50,
+            forced_width = 50,
         },
         layout   = {
             spacing = 3,
@@ -309,30 +323,40 @@ function theme.at_screen_connect(s)
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
         -- not a widget instance.
         widget_template = {
-            {
+            {   
                 {
                     {
                         {
-                            id     = 'icon_role',
-                            widget = wibox.widget.imagebox,
+                            {
+                                id     = 'icon_role',
+                                widget = wibox.widget.imagebox,
+                            },
+                            margins = 5,
+                            widget  = wibox.container.margin,
                         },
-                        margins = 5,
-                        widget  = wibox.container.margin,
+                        {
+                            id     = 'text_role',
+                            widget = wibox.widget.textbox,
+                        },
+                        spacing = 5,
+                        layout = wibox.layout.fixed.horizontal,
                     },
-                    {
-                        id     = 'text_role',
-                        widget = wibox.widget.textbox,
-                    },
-                    spacing = 5,
-                    layout = wibox.layout.fixed.horizontal,
+                    left  = 10,
+                    right = 10,
+                    widget = wibox.container.margin
                 },
-                left  = 10,
-                right = 10,
-                widget = wibox.container.margin
+                -- {
+                --     wibox.widget.base.make_widget(),
+                --     forced_height = 2,
+                --     id = 'background_role',
+                --     bg = "#FFFFFF",
+                --     widget = wibox.container.background,
+                -- },
+                layout = wibox.layout.align.vertical,
             },
             id     = 'background_role',
             widget = wibox.container.background,
-            forced_width = 50,
+            -- forced_width = 50,
         },
     }
 
@@ -346,7 +370,7 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --spr,
-            wibox.container.background(s.mytaglist, "#444444", gears.shape.octogon),
+            s.mytag,
             s.mypromptbox,
             spr,
         },
