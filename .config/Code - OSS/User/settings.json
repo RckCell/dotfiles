@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "files.autoSave": "afterDelay",
+    "editor.fontLigatures": true,
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.smoothScrolling": true
+}
