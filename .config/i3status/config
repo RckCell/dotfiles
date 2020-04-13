@@ -15,11 +15,12 @@ general {
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery all"
-#order += "disk /"
-#order += "load"
-#order += "memory"
-order += "volume master"
-order += "tztime local"
+order += "disk /"
+order += "load"
+order += "memory"
+#order += "volume master"
+order += "tztime local" 
+
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -50,7 +51,7 @@ memory {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%Y-%m-%d %H:%M"
 }
 
 volume master {

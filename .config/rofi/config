@@ -1,2 +1,3 @@
 rofi.font: Inconsolata 12
 rofi.theme: /usr/share/rofi/themes/glue_pro_blue.rasi
+rofi.modi: window,run,combi

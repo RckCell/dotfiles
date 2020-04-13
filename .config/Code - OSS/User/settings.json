@@ -3,5 +3,10 @@
     "files.autoSave": "afterDelay",
     "editor.fontLigatures": true,
     "editor.cursorSmoothCaretAnimation": true,
-    "editor.smoothScrolling": true
+    "editor.smoothScrolling": true,
+    "git.autofetch": true,
+    "files.associations": {
+        "**/.i3/config": "i3",
+        "**/i3/config": "i3",
+    },
 }
