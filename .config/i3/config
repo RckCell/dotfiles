@@ -33,7 +33,7 @@ focus_follows_mouse no
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id "alacritty -e /usr/bin/fish -i"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -98,6 +98,10 @@ bindsym $mod+a focus parent
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause 
+bindsym XF86AudioPrev exec playerctl previous 
+bindsym XF86AudioNext exec playerctl next  
+
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
