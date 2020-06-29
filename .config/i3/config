@@ -33,13 +33,13 @@ focus_follows_mouse no
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id st 
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start Rofi (a program launcher)
-bindsym Mod1+space exec rofi -show run 
+bindsym $mod+Mod1+Return exec rofi -show run 
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -78,9 +78,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -106,7 +106,7 @@ set $ws2 "2 "
 set $ws3 "3 "
 set $ws4 "4 "
 set $ws5 "5"
-set $ws6 "6"
+set $ws6 "6 "
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -136,9 +136,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-#set screenlock
-bindsym Control+Mod1+l exec i3lock -nefi /home/pablo/Wallpapers/11729.jpg
-exec --no-startup-id xidlehook --not-when-fullscreen --timer 600 'i3lock -nefi /home/pablo/Wallpapers/11729.jpg' ''
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -197,6 +194,12 @@ assign [class="firefox"] $ws2
 assign [class="Brave-browser"] $ws2
 
 
+#Set floating mode to some Windows
+for_window [class="Pavucontrol"] floating enable
+for_window [class="mpv"] floating enable
+
+
+
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 2
 smart_borders on
@@ -213,6 +216,10 @@ exec --no-startup-id pasystray &
 
 
 #Custom app bindings
-bindsym Mod1+w exec brave
+bindsym $mod+w exec brave
 bindsym $mod+Shift+s exec "maim -s | xclip -selection clipboard -t image/png"
-bindsym Mod1+Shift+Pause exec "systemctl suspend"
+bindsym $mod+Shift+Pause exec "systemctl suspend"
+bindsym $mod+Pause exec "sleep 1; xset dpms force standby; i3lock -nefi /home/pablo/Wallpapers/11729.png"
+
+#set screenlock
+exec --no-startup-id xidlehook --not-when-fullscreen --timer 600 'i3lock -nefi /home/pablo/Wallpapers/11729.png' ''
