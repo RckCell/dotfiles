@@ -17,6 +17,7 @@ general {
 #order += "battery all"
 order += "disk /"
 order += "load"
+order += "cpu_temperature 0"
 order += "memory"
 #order += "volume master"
 order += "tztime local" 
@@ -58,4 +59,9 @@ volume master {
         format = "♪: %volume"
         format_muted = "♪: muted (%volume)"
         device = "pulse"
+}
+
+cpu_temperature 0 {
+                   format = "T: %degrees °C"
+                   path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
 }

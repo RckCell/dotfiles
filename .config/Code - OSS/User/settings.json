@@ -9,4 +9,5 @@
         "**/.i3/config": "i3",
         "**/i3/config": "i3",
     },
+    "editor.fontSize": 16,
 }
